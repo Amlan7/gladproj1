@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "amlan",
+      "lastName": "abhijeet",
+      "email": "amlanaab.79@gmail.com"
+    },
+    {
+      "id": 2,
+      "firstName": "meh",
+      "lastName": "blah",
+      "email": "pluple@gmail.com"
+    },
+    {
+      "id": 3,
+      "firstName": "blu",
+      "lastName": "ple",
+      "email": "majupel@gmail.com"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+<p>user works!</p>
+<button (click)="addUser()" class='btn btn-success'>Add User</button>
+<button class='btn btn-success'>Log-off</button>
+<table class="table table-striped 
+            table-responsive table-hover">
+    <thead>
+        <th class="text-hide">Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td class="text-hide">{{ user.id }}</td>
+            <td>{{ user.firstName  }}</td>
+            <td>{{ user.lastName  }}</td>
+            <td>{{ user.email | titlecase }}</td>
+            <td>
+                <button class="btn btn-danger">Delete</button>
+
+
+                <button class="btn btn-danger">Edit</button>
+            </td>
+        </tr>
+        <tr *ngIf="!users || users.length==0">
+            <th colspan="5">
+                <p class="text-right text-danger">
+                    Sorry, No users available ..!
+                </p>
+            </th>
+        </tr>
+    </tbody>
+</table>

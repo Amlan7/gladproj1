@@ -1,0 +1,66 @@
+<p>employee works!</p>
+<p>Subjects<span *ngFor="let s of Subjects">{{" "+s}}</span></p>
+<span *ngIf ="ShowFaculy">{{FacultyName}}</span>
+
+<h2>Employee data</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Annual Salary</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of employees">
+            <td>{{e.code}}</td>
+            <td>{{e.name}}</td>
+            <td>{{e.gender}}</td>
+            <td>{{e.annualSalary}}</td>
+            <td>{{e.dateOfBirth}}</td>
+        </tr>
+        <tr *ngIf="employees.length==0 || !employees">
+            <td colspan="5">no employees to display</td>
+        </tr>
+    </tbody>
+</table>
+<h1 >Display data using Interpolation From Object</h1>
+<table border="2">
+    <tr>  <td> ID</td> <td>{{pro.id}}</td> </tr>
+    <tr><td> Name</td> <td>{{pro.name}}</td></tr>
+    <tr><td> Cost</td> <td>{{pro.cost}}</td> </tr>
+    <tr>
+        <td> Category</td> <td>{{pro.category}}</td>
+    </tr>
+</table>
+
+<h1 >Display data using Interpolation 
+    From Array Of Object</h1>
+<table border="2">
+     <thead><tr><th> Name</th><th>Cost</th> <th>Category</th>
+         </tr>
+     </thead>
+     <tbody >
+         <tr *ngFor="let pro of products">
+             <td>{{pro.name | uppercase}}</td>
+             <td>{{pro.cost}}</td>
+             <td>{{pro.category}}</td>
+         </tr>
+           
+     </tbody>
+</table>
+<button class="btn btn-primary" (click)="myFunction()">Click Me</button>
+<button class="btn btn-success" (click)="deleteProduct(100)">Delete</button>
+<button class="btn btn-danger" (click)="editProduct(100,'Note2')">Edit</button>
+<table border="3">
+<tr *ngFor="let employees of employees">
+            <td> {{employees.code}}</td>
+            <td>{{employees.name | uppercase |gender:employees.gender}}</td>
+            <td>{{employees.gender}}</td>
+            <td>{{employees.annualSalary}}</td>
+            <td>{{employees.dateOfBirth | date:"fullDate"}}</td>
+        </tr>
+    </table>

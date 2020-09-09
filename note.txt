@@ -1,0 +1,128 @@
+First Create an UserComponent
+
+ 
+
+ng g c components/User
+
+ 
+
+Second Create an Model
+
+ 
+
+UserTable.ts
+
+ 
+
+
+export class UserTable {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string
+}
+
+ 
+
+
+third step In order to fetch the data from Server which is running on port number 3000 on a URL http://localhost:3000/users
+
+ 
+
+HttpClientModule ->import this Module in AppModule.ts
+===============================================================
+
+ 
+
+
+Forth We created the Service
+ng g s Services/User
+UserService 
+
+ 
+
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { UserTable } from '../Model/UserTable';
+
+ 
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  //Using Depedency Injection We have to inject the HttpClient Class as a Module in
+  //the service
+
+ 
+
+  baseURL: string = "http://localhost:3000/users";
+  constructor(private _http: HttpClient) {
+
+ 
+
+  }
+  //Get All the Users
+  getAllUsers() {
+    return this._http.get<UserTable[]>(this.baseURL);
+  }
+
+ 
+
+}
+============================================================
+
+ 
+
+firth Step
+
+ 
+
+
+Using DI we have to Inject the UserService inside the component 
+
+ 
+
+import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { UserTable } from 'src/app/Model/UserTable';
+
+ 
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
+})
+export class UserComponent implements OnInit {
+  //Variable of type UserTable 
+  users: UserTable[];
+
+ 
+
+  //DI
+  constructor(private _userService: UserService) { }
+
+ 
+
+  ngOnInit(): void {
+    this._userService.getAllUsers()
+      .subscribe(data => {
+        this.users = data;
+      });
+  }
+
+ 
+
+
+  // this.userService.getUsers()
+  //       .subscribe(data => {
+  //         this.users = data;
+  //       });
+  //GetMethod
+  // getAllUsersFun() {
+  //   this._userService.getAllUsers()
+  //     .subscribe(data => { this.users = data });
+  // }
+}
